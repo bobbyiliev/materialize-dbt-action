@@ -2,62 +2,63 @@
 
 set -o pipefail
 
-echo "dbt project folder set as: \"${DBT_PROJECT_FOLDER}\""
-cd ${DBT_PROJECT_FOLDER}
+dbt_project_folder=${DBT_PROJECT_FOLDER:-./}
+
+echo "dbt project folder set as: \"${dbt_project_folder}\""
+
+# Check if the `profiles.yml` file exists in the project folder
+if [ -f "${dbt_project_folder}/profiles.yml" ]
+then
+  echo "profiles.yml file exists in the project folder"
+else
+  echo "profiles.yml file does not exist in the project folder"
+  echo "Copying the profiles.yml file to the project folder"
+  mkdir /github/home/.dbt
+  cp /profiles.yml /github/home/.dbt
+fi
+
+cd ${dbt_project_folder}
 
 # Create a `profiles.yml` file
-echo "Updating profiles.yml"
-if [ -z "$MZ_USER" ]
+echo "Checking the environment variables"
+if [ -z ${MZ_USER} ]
 then
   echo "MZ_USER is empty"
   exit 1
-else
-  sed -i "s/MZ_USER/${MZ_USER}/g" ~/.dbt/profiles.yml
 fi
 
-if [ -z "$MZ_PASS" ]
+if [ -z ${MZ_PASS} ]
 then
   echo "MZ_PASS is empty"
   exit 1
-else
-  sed -i "s/MZ_PASS/${MZ_PASS}/g" ~/.dbt/profiles.yml
 fi
 
-if [ -z "$MZ_HOST" ]
+if [ -z ${MZ_HOST} ]
 then
   echo "MZ_HOST is empty"
   exit 1
-else
-  sed -i "s/MZ_HOST/${MZ_HOST}/g" ~/.dbt/profiles.yml
 fi
 
-if [ -z "$MZ_PORT" ]
+if [ -z ${MZ_CLUSTER} ]
 then
-  sed -i "s/MZ_PORT/6875/g" ~/.dbt/profiles.yml
-else
-  sed -i "s/MZ_PORT/${MZ_PORT}/g" ~/.dbt/profiles.yml
+  echo "MZ_CLUSTER is empty, setting to 'default'"
+  export MZ_CLUSTER='default'
 fi
 
-if [ -z "$MZ_DB" ]
+if [ -z ${MZ_DATABASE} ]
 then
-  sed -i "s/MZ_DB/materialize/g" ~/.dbt/profiles.yml
-else
-  sed -i "s/MZ_DB/${MZ_DB}/g" ~/.dbt/profiles.yml
+  echo "MZ_DATABASE is empty, setting to 'materialize'"
+  export MZ_DATABASE='materialize'
 fi
 
-if [ -z "$MZ_SCHEMA" ]
+if [ -z ${MZ_SCHEMA} ]
 then
-  sed -i "s/MZ_SCHEMA/public/g" ~/.dbt/profiles.yml
-else
-  sed -i "s/MZ_SCHEMA/${MZ_SCHEMA}/g" ~/.dbt/profiles.yml
+  echo "MZ_SCHEMA is empty, setting to 'public'"
+  export MZ_SCHEMA='public'
 fi
 
-if [ -z "$MZ_CLUSTER" ]
-then
-  sed -i "s/MZ_CLUSTER/mz_introspection/g" ~/.dbt/profiles.yml
-else
-  sed -i "s/MZ_CLUSTER/${MZ_CLUSTER}/g" ~/.dbt/profiles.yml
-fi
+pwd
+ls -lah
 
 DBT_ACTION_LOG_FILE=${DBT_ACTION_LOG_FILE:="dbt_console_output.txt"}
 DBT_ACTION_LOG_PATH="${DBT_PROJECT_FOLDER}/${DBT_ACTION_LOG_FILE}"

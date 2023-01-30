@@ -7,10 +7,6 @@ inputs:
     description: "dbt command"
     default: "dbt run"
     required: true
-  dbt_project_folder:
-    description: "dbt project folder. Defaults to ."
-    default: "."
-    required: false
 outputs:
   result:
     description: "Success or failure of the dbt command"

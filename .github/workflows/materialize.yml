@@ -14,13 +14,11 @@ jobs:
     - name: Materialize dbt action
       uses: bobbyiliev/materialize-dbt-action@main
       with:
-        dbt_command: "dbt --version"
-        dbt_project_folder: "dbt_project"
+        dbt_command: "dbt --version --profiles-dir /profiles.yml"
       env:
-        MZ_PASS: ${{ secrets.MZ_API_KEY }}
+        MZ_PASS: ${{ secrets.MZ_PASS }}
         MZ_USER: ${{ secrets.MZ_USER }}
         MZ_HOST: ${{ secrets.MZ_HOST }}
-        MZ_PORT: ${{ env.MZ_PORT }}
-        MZ_DB: ${{ env.MZ_DB }}
-        MZ_SCHEMA: ${{ env.MZ_SCHEMA }}
+        MZ_DATABASE: materialize
+        MZ_CLUSTER: default
         DBT_PROJECT_DIR: ${{ env.DBT_PROJECT_DIR }}

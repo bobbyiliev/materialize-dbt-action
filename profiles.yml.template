@@ -1,0 +1,15 @@
+default:
+  outputs:
+    default:
+      type: materialize
+      threads: 1
+      host: MZ_HOST
+      port: MZ_PORT
+      user: MZ_USER
+      pass: MZ_PASS
+      database: MZ_DB
+      schema: MZ_SCHEMA
+      cluster: MZ_CLUSTER
+      sslmode: require
+
+  target: default

@@ -1,0 +1,24 @@
+name: "Materialize dbt action"
+description: "Run dbt-materialize commands directly in your Github repo"
+author: "Bobby Iliev"
+
+inputs:
+  dbt_command:
+    description: "dbt command"
+    default: "dbt run"
+    required: true
+  dbt_project_folder:
+    description: "dbt project folder. Defaults to ."
+    default: "."
+    required: false
+outputs:
+  result:
+    description: "Success or failure of the dbt command"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.dbt_command }}
+branding:
+  icon: 'database'
+  color: 'purple'

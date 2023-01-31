@@ -1,0 +1,37 @@
+name: Materialize dbt action
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: dbt debug
+      uses: bobbyiliev/materialize-dbt-action@main
+      with:
+        dbt_command: "dbt debug --profiles-dir /profiles.yml"
+      env:
+        MZ_PASS: ${{ secrets.MZ_PASS }}
+        MZ_USER: ${{ secrets.MZ_USER }}
+        MZ_HOST: ${{ secrets.MZ_HOST }}
+        MZ_DATABASE: materialize
+        MZ_CLUSTER: default
+        MZ_SCHEMA: dbt_action_ci_cd
+        DBT_PROJECT_DIR: 'tests/materialize_dbt_test'
+    - name: Materialize dbt action
+      uses: bobbyiliev/materialize-dbt-action@main
+      with:
+        dbt_command: "dbt run --profiles-dir /profiles.yml"
+      env:
+        MZ_PASS: ${{ secrets.MZ_PASS }}
+        MZ_USER: ${{ secrets.MZ_USER }}
+        MZ_HOST: ${{ secrets.MZ_HOST }}
+        MZ_DATABASE: materialize
+        MZ_CLUSTER: default
+        MZ_SCHEMA: dbt_action_ci_cd
+        DBT_PROJECT_DIR: 'tests/materialize_dbt_test'

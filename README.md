@@ -44,7 +44,7 @@ jobs:
     - name: Materialize dbt action
       uses: bobbyiliev/materialize-dbt-action@main
       with:
-        dbt_command: "dbt --version --profiles-dir /profiles.yml"
+        dbt_command: "dbt --version --profiles-dir /"
       env:
         MZ_PASS: ${{ secrets.MZ_PASS }}
         MZ_USER: ${{ secrets.MZ_USER }}
@@ -70,7 +70,7 @@ on:
 
 ### `dbt_command`
 
-**Required** The dbt command to run. Default `"dbt --version --profiles-dir /profiles.yml"`. You can change this to run any dbt command.
+**Required** The dbt command to run. Default `"dbt --version --profiles-dir /"`. You can change this to run any dbt command.
 
 ## Overriding the default `profiles.yml`
 
@@ -94,10 +94,12 @@ default:
   target: default
 ```
 
-Then change the `dbt_command` input to `"dbt --version --profiles-dir profiles.yml"`.
+Then change the `dbt_command` input to `"dbt --version --profiles-dir your_project_dir"`.
 
 This will override the default `profiles.yml` file and use the one from your repository.
 
 ## `DBT_PROJECT_FOLDER`
 
 You can specify a custom dbt project folder by setting the `DBT_PROJECT_FOLDER` environment variable. This is useful if you have multiple dbt projects in the same repository.
+
+

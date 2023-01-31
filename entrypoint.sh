@@ -57,8 +57,11 @@ then
   export MZ_SCHEMA='public'
 fi
 
-pwd
-ls -lah
+if [ -z ${MZ_DEBUG} ]
+then
+  pwd
+  ls -lah
+fi
 
 DBT_ACTION_LOG_FILE=${DBT_ACTION_LOG_FILE:="dbt_console_output.txt"}
 DBT_ACTION_LOG_PATH="${DBT_PROJECT_FOLDER}/${DBT_ACTION_LOG_FILE}"

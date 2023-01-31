@@ -94,7 +94,7 @@ default:
   target: default
 ```
 
-Then change the `dbt_command` input to `"dbt --version --profiles-dir your_project_dir"` or `dbt run --profiles-dir .` if you have a `profiles.yml` file in the root of your repository.
+Then change the `dbt_command` input to `"dbt --version --profiles-dir .` if you have a `profiles.yml` file in your repository. The `${DBT_PROJECT_FOLDER}` will be added to the `--profiles-dir` argument.
 
 This will override the default `profiles.yml` file and use the one from your repository.
 

@@ -38,7 +38,7 @@ jobs:
     - name: dbt debug
       uses: bobbyiliev/materialize-dbt-action@main
       with:
-        dbt_command: "dbt debug --profiles-dir tests/custom_profiles_test"
+        dbt_command: "dbt debug --profiles-dir ."
       env:
         MZ_PASS: ${{ secrets.MZ_PASS }}
         MZ_USER: ${{ secrets.MZ_USER }}
@@ -50,7 +50,7 @@ jobs:
     - name: Test with custom profiles.yml
       uses: bobbyiliev/materialize-dbt-action@main
       with:
-        dbt_command: "dbt run --profiles-dir tests/custom_profiles_test"
+        dbt_command: "dbt run --profiles-dir ."
       env:
         MZ_PASS: ${{ secrets.MZ_PASS }}
         MZ_USER: ${{ secrets.MZ_USER }}

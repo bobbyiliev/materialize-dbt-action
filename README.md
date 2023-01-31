@@ -70,7 +70,7 @@ on:
 
 ### `dbt_command`
 
-**Required** The dbt command to run. Default `"dbt --version --profiles-dir /"`. You can change this to run any dbt command.
+**Required** The dbt command to run. Default `"dbt --version"`. You can change this to run any dbt command.
 
 ## Overriding the default `profiles.yml`
 
@@ -94,7 +94,7 @@ default:
   target: default
 ```
 
-Then change the `dbt_command` input to `"dbt --version --profiles-dir your_project_dir"`.
+Then change the `dbt_command` input to `"dbt --version --profiles-dir your_project_dir"` or `dbt run --profiles-dir .` if you have a `profiles.yml` file in the root of your repository.
 
 This will override the default `profiles.yml` file and use the one from your repository.
 

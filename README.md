@@ -12,6 +12,16 @@ The following secrets are required:
 | `MZ_USER` | The username for the Materialize user. | `MZ_USER: ${{ secrets.MZ_USER }}` |
 | `MZ_HOST` | The host for the Materialize instance. | `MZ_HOST: ${{ secrets.MZ_HOST }}` |
 
+## Variables
+
+You can override the default values for the following variables:
+
+| Name | Description | Default |
+| ---- | ----------- | ------- |
+| `MZ_DATABASE` | The database for the Materialize instance. | `materialize` |
+| `MZ_SCHEMA` | The schema for the Materialize instance. | `public` |
+| `MZ_CLUSTER` | The cluster for the Materialize instance. | `default` |
+| `DBT_PROJECT_FOLDER` | The dbt project folder. | `.` |
 
 ## Usage
 
@@ -39,14 +49,13 @@ jobs:
         MZ_PASS: ${{ secrets.MZ_PASS }}
         MZ_USER: ${{ secrets.MZ_USER }}
         MZ_HOST: ${{ secrets.MZ_HOST }}
-        MZ_PORT: 6875
         MZ_DATABASE: materialize
         MZ_SCHEMA: public
         MZ_CLUSTER: default
         DBT_PROJECT_FOLDER: ${{ env.DBT_PROJECT_FOLDER }}
 ```
 
-The above will run the `dbt --version` command against a Materialize instance on every push to the `main` branch.
+The above will run the `dbt --version` command against your Materialize instance on every push to the `main` branch.
 
 To run on a pull request, change the `on` section to:
 
@@ -65,10 +74,7 @@ on:
 
 ## Overriding the default `profiles.yml`
 
-You can override the default `profiles.yml` by creating a new file in your repository called `/profiles.yml` and add the following content:
-
-```yaml
-Add the following `profiles.yml` file to your dbt project:
+You can override the default `profiles.yml` by creating a new file in your repository called `profiles.yml` and add the following content:
 
 ```yaml
 default:

@@ -14,7 +14,7 @@ jobs:
     - name: Materialize dbt action
       uses: bobbyiliev/materialize-dbt-action@main
       with:
-        dbt_command: "dbt debug --profiles-dir /profiles.yml"
+        dbt_command: "dbt --version --profiles-dir /profiles.yml"
       env:
         MZ_PASS: ${{ secrets.MZ_PASS }}
         MZ_USER: ${{ secrets.MZ_USER }}

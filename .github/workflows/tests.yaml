@@ -22,8 +22,8 @@ jobs:
         MZ_DATABASE: materialize
         MZ_CLUSTER: default
         MZ_SCHEMA: dbt_action_ci_cd
-        DBT_PROJECT_FOLDER: 'tests/materialize_dbt_test'
-    - name: Materialize dbt action
+        DBT_PROJECT_FOLDER: 'tests/default_profiles_test'
+    - name: Test with default profiles.yml
       uses: bobbyiliev/materialize-dbt-action@main
       with:
         dbt_command: "dbt run"
@@ -34,4 +34,28 @@ jobs:
         MZ_DATABASE: materialize
         MZ_CLUSTER: default
         MZ_SCHEMA: dbt_action_ci_cd
-        DBT_PROJECT_FOLDER: 'tests/materialize_dbt_test'
+        DBT_PROJECT_FOLDER: 'tests/default_profiles_test'
+    - name: dbt debug
+      uses: bobbyiliev/materialize-dbt-action@main
+      with:
+        dbt_command: "dbt debug --profiles-dir tests/custom_profiles_test"
+      env:
+        MZ_PASS: ${{ secrets.MZ_PASS }}
+        MZ_USER: ${{ secrets.MZ_USER }}
+        MZ_HOST: ${{ secrets.MZ_HOST }}
+        MZ_DATABASE: materialize
+        MZ_CLUSTER: default
+        MZ_SCHEMA: dbt_action_ci_cd
+        DBT_PROJECT_FOLDER: 'tests/custom_profiles_test'
+    - name: Test with custom profiles.yml
+      uses: bobbyiliev/materialize-dbt-action@main
+      with:
+        dbt_command: "dbt run --profiles-dir tests/custom_profiles_test"
+      env:
+        MZ_PASS: ${{ secrets.MZ_PASS }}
+        MZ_USER: ${{ secrets.MZ_USER }}
+        MZ_HOST: ${{ secrets.MZ_HOST }}
+        MZ_DATABASE: materialize
+        MZ_CLUSTER: default
+        MZ_SCHEMA: dbt_action_ci_cd
+        DBT_PROJECT_FOLDER: 'tests/custom_profiles_test'

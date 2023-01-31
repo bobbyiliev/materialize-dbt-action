@@ -22,7 +22,7 @@ jobs:
         MZ_DATABASE: materialize
         MZ_CLUSTER: default
         MZ_SCHEMA: dbt_action_ci_cd
-        DBT_PROJECT_DIR: 'tests/materialize_dbt_test'
+        DBT_PROJECT_FOLDER: 'tests/materialize_dbt_test'
     - name: Materialize dbt action
       uses: bobbyiliev/materialize-dbt-action@main
       with:
@@ -34,4 +34,4 @@ jobs:
         MZ_DATABASE: materialize
         MZ_CLUSTER: default
         MZ_SCHEMA: dbt_action_ci_cd
-        DBT_PROJECT_DIR: 'tests/materialize_dbt_test'
+        DBT_PROJECT_FOLDER: 'tests/materialize_dbt_test'

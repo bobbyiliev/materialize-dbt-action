@@ -12,7 +12,7 @@ jobs:
       with:
         fetch-depth: 0
     - name: dbt version
-      uses: bobbyiliev/materialize-dbt-action@add-tests
+      uses: bobbyiliev/materialize-dbt-action@main
       with:
         dbt_command: "dbt --version"
       env:

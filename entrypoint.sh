@@ -2,6 +2,9 @@
 
 set -o pipefail
 
+python3 -m venv dbt
+source dbt/bin/activate
+
 if [ -z ${DBT_CORE_VERSION} ]
 then
   echo "DBT_CORE_VERSION is empty, installing the latest version"

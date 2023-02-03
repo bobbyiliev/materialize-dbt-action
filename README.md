@@ -103,3 +103,12 @@ This will override the default `profiles.yml` file and use the one from your rep
 You can specify a custom dbt project folder by setting the `DBT_PROJECT_FOLDER` environment variable. This is useful if you have multiple dbt projects in the same repository.
 
 
+## dbt version
+
+By default the action will install the latest version of dbt. You can specify a specific version by setting the `DBT_CORE_VERSION` and `DBT_MZ_VERSION` environment variables. For example:
+
+```yaml
+env:
+  DBT_CORE_VERSION: 1.3.2
+  DBT_MZ_VERSION: 1.3.2
+```

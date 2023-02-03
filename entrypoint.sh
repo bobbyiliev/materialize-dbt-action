@@ -5,15 +5,6 @@ set -o pipefail
 python3 -m venv dbt
 source dbt/bin/activate
 
-if [ -z ${DBT_CORE_VERSION} ]
-then
-  echo "DBT_CORE_VERSION is empty, installing the latest version"
-  pip install dbt-core dbt-postgres
-else
-  echo "Installing dbt version ${DBT_CORE_VERSION}"
-  pip install dbt-core==${DBT_CORE_VERSION} dbt-postgres==${DBT_CORE_VERSION}
-fi
-
 if [ -z ${DBT_MZ_VERSION} ]
 then
   echo "DBT_MZ_VERSION is empty, installing the latest version"

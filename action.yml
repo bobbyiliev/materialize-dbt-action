@@ -5,7 +5,7 @@ author: "Bobby Iliev"
 inputs:
   dbt_command:
     description: "dbt command"
-    default: "dbt run"
+    default: "dbt debug"
     required: true
 outputs:
   result:

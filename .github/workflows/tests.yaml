@@ -25,7 +25,7 @@ jobs:
         MZ_SCHEMA: dbt_action_ci_cd
         DBT_PROJECT_FOLDER: 'tests/default_profiles_test'
     - name: dbt debug
-      uses: bobbyiliev/materialize-dbt-action@add-tests
+      uses: bobbyiliev/materialize-dbt-action@main
       with:
         dbt_command: "dbt debug"
       env:

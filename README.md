@@ -16,12 +16,14 @@ The following secrets are required:
 
 You can override the default values for the following variables:
 
-| Name | Description | Default |
-| ---- | ----------- | ------- |
-| `MZ_DATABASE` | The database for the Materialize instance. | `materialize` |
-| `MZ_SCHEMA` | The schema for the Materialize instance. | `public` |
-| `MZ_CLUSTER` | The cluster for the Materialize instance. | `default` |
-| `DBT_PROJECT_FOLDER` | The dbt project folder. | `.` |
+
+| Name                 | Description                                  | Default       |
+| -------------------- | -------------------------------------------- | ------------- |
+| `DBT_MZ_VERSION`     | `dbt-materialize` adapter version to install | `latest`      |
+| `MZ_DATABASE`        | The database for the Materialize instance    | `materialize` |
+| `MZ_SCHEMA`          | The schema for the Materialize instance      | `public`      |
+| `MZ_CLUSTER`         | The cluster for the Materialize instance     | `default`     |
+| `DBT_PROJECT_FOLDER` | The dbt project folder                       | `.`           |
 
 ## Usage
 
@@ -46,6 +48,7 @@ jobs:
       with:
         dbt_command: "dbt --version --profiles-dir /"
       env:
+        DBT_MZ_VERSION: 1.3.4
         MZ_PASS: ${{ secrets.MZ_PASS }}
         MZ_USER: ${{ secrets.MZ_USER }}
         MZ_HOST: ${{ secrets.MZ_HOST }}
@@ -70,7 +73,7 @@ on:
 
 ### `dbt_command`
 
-**Required** The dbt command to run. Default `"dbt --version"`. You can change this to run any dbt command.
+**Required** The dbt command to run. Default `"dbt debug"`. You can change this to run any dbt command.
 
 ## Overriding the default `profiles.yml`
 
@@ -88,7 +91,7 @@ default:
       port: 6875
       database: materialize
       schema: public
-      cluster: mz_introspection
+      cluster: default
       sslmode: require
 
   target: default

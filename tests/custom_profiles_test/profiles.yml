@@ -1,0 +1,15 @@
+default:
+  outputs:
+    default:
+      type: materialize
+      threads: 1
+      host: "{{ env_var('MZ_HOST')}}"
+      port: 6875
+      user: "{{ env_var('MZ_USER')}}"
+      pass: "{{ env_var('MZ_PASS')}}"
+      database: "{{ env_var('MZ_DATABASE')}}"
+      schema: "{{ env_var('MZ_SCHEMA')}}"
+      cluster: "{{ env_var('MZ_CLUSTER')}}"
+      sslmode: require
+
+  target: default

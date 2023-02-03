@@ -1,4 +1,14 @@
-FROM materialize/dbt-materialize:latest
+FROM python:3.10.7-slim-bullseye
+
+# System setup
+RUN apt-get update \
+  && apt-get dist-upgrade -y \
+  && apt-get install -y \
+    git \
+    libpq-dev \
+    libssl-dev \
+    libffi-dev \
+    build-essential
 
 LABEL maintainer="Materialize, Inc."
 LABEL description="Materialize dbt adapter GitHub Action"

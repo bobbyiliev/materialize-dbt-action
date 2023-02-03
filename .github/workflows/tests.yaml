@@ -16,7 +16,6 @@ jobs:
       with:
         dbt_command: "dbt --version"
       env:
-        DBT_CORE_VERSION: 1.3.0
         DBT_MZ_VERSION: 1.3.4
         MZ_PASS: ${{ secrets.MZ_PASS }}
         MZ_USER: ${{ secrets.MZ_USER }}
@@ -30,7 +29,6 @@ jobs:
       with:
         dbt_command: "dbt debug"
       env:
-        DBT_CORE_VERSION: 1.3.1
         DBT_MZ_VERSION: 1.3.4
         MZ_PASS: ${{ secrets.MZ_PASS }}
         MZ_USER: ${{ secrets.MZ_USER }}
@@ -44,7 +42,6 @@ jobs:
       with:
         dbt_command: "dbt run"
       env:
-        DBT_CORE_VERSION: 1.3.1
         DBT_MZ_VERSION: 1.3.4
         MZ_PASS: ${{ secrets.MZ_PASS }}
         MZ_USER: ${{ secrets.MZ_USER }}

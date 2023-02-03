@@ -13,6 +13,9 @@ jobs:
         fetch-depth: 0
     - name: dbt debug
       uses: bobbyiliev/materialize-dbt-action@main
+      build-args:
+        DBT_VERSION: 1.3.1
+        MZ_VERSION: 1.3.4
       with:
         dbt_command: "dbt debug"
       env:
